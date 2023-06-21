@@ -1,0 +1,35 @@
+/*
+Theme Name: kize
+Theme URI: https://www.osef.fr/
+Author: kize
+Author URI: https://www.kize.fr/
+Description: Description du thème en quelques mots : Description
+Version: 1.0
+*/
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body {
+    background: lightblue;
+    font-family: "Source Sans Pro", serif;
+    color: #4b5157;
+    margin: 0 auto;
+    width: 100vw;
+    height: 100vh;
+    padding: 2rem;
+    padding-top: 0.5rem;
+}
+
+.container {
+    background-color: lightgray;
+    padding: 2rem;
+}
+
+.blog-post {
+    background-color: lightblue;
+    padding: 1rem;
+    border: solid 1px whitesmoke;
+    margin: 2rem;
+}
