@@ -88,7 +88,7 @@ add_theme_support('post-thumbnails');
 // Utilisation de filtre pour changer le titre du site
 function kize_test_filtre()
 {
-    return 'Site tier S';
+    return 'Fox land';
 }
 
 add_filter('bloginfo', 'kize_test_filtre');
@@ -119,7 +119,7 @@ function get_id_by_slug($page_slug): ?int
 
 function kize_register_post_types()
 {
-// CPT services
+// CPT services ( Il y a de nombreux autres paramètre possible !)
     $labels = array(
         'name' => 'Services',
         'all_items' => 'Tous les services',  // affiché dans le sous menu
@@ -133,6 +133,7 @@ function kize_register_post_types()
         'labels' => $labels,
         'public' => true,
         'show_in_rest' => true,
+        'hierarchical' => true, // Définir le CPT comme hiérarchique
         'has_archive' => true,
         'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
         'menu_position' => 5,
