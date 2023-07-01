@@ -1,7 +1,7 @@
 <div class="front_page_news_container">
 
     <h2><?php the_field('titre_news_section'); ?></h2>
-    <p><?php the_field('texte_news_section'); ?></p>
+    <p class="txt_news_section"><?php the_field('texte_news_section'); ?></p>
 
     <div class="front_page_news_card_container">
         <?php
@@ -17,13 +17,21 @@
                 $query->the_post();
                 ?>
                 <div class="front_page_news_card">
-                    <a href="<?php the_permalink(); ?>">
-                        <h2><?php the_title(); ?></h2>
-                        <p>
-                            <img src="<?php the_post_thumbnail_url(); ?>" alt="osef" style="width: 100%; height: auto">
-                        </p>
-                        <p><?php the_excerpt(); ?></p>
-                        <p><a href="<?php the_permalink(); ?>" class="btn btn-primary">Lire la suite</a></p>
+                    <a class="front_page_news_card_content" href="<?php the_permalink(); ?>">
+                        <div class="front_page_news_card_content_title">
+                            <h2><?php the_title(); ?></h2>
+                        </div>
+                        <div class="front_page_news_card_content_img">
+                            <p >
+                                <img class="front_page_news_image" src="<?php the_post_thumbnail_url(); ?>" alt="osef">
+                            </p>
+                        </div>
+                        <div class="front_page_news_card_content_excerpt">
+                            <p><?php the_excerpt(); ?></p>
+                        </div>
+                        <div class="front_page_news_card_content_button">
+                            <p><a href="<?php the_permalink(); ?>" class="btn btn-primary">Lire la suite</a></p>
+                        </div>
                     </a>
                 </div>
                 <?php

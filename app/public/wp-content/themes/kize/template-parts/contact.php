@@ -1,6 +1,6 @@
 <div class="contact_container">
 
-    <div class="col-md-6 welcome_block_1">
+    <div class="contact_block_1">
         <h2><?php the_field('titre_contact_section', get_id_by_slug('contact')); ?></h2>
         <p>
             <?php the_field('adresse_numero_de_voie_contact_section', get_id_by_slug('contact')); ?>
@@ -21,7 +21,7 @@
             </a>
         </div>
     </div>
-    <div class="col-md-6 welcome_block_2">
+    <div class="contact_block_2">
         <?php echo do_shortcode("[mapengine id='45']"); ?>
     </div>
 </div>

@@ -2,13 +2,50 @@
 
 /*header block */
 
+
+.navbar {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    background: transparent;
+    top: 0px;
+}
+
+#navbarNav {
+    flex-direction: row-reverse;
+}
+
+@media (min-width: 992px) {
+    #navbarNav {
+        display: none;
+    }
+}
+
+.header_social_link_container {
+
+}
+
+
 #navbarSupportedContent {
     display: flex;
     justify-content: space-between;
 }
 
-.navbar-nav {
-    margin-right: 10px!important;}
+#navbarNav {
+}
+
+
+.header_logo {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.5rem;
+}
+
+.header_social_logo {
+    width: 1.5rem;
+    height: 1.5rem;
+}
 
 /*footer block*/
 
@@ -42,38 +79,87 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: #f8f9fa;
+    /*background-color: #f8f9fa;*/
     padding: 1rem;
-    margin-bottom: 2rem;
-    border: 1px solid #ccc; /* Ajoute une bordure de 1 pixel avec une couleur grise (#ccc) */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Ajoute une ombre avec un flou de 10 pixels et une opacité de 0.2 */
+    /*border: 1px solid #ccc; !* Ajoute une bordure de 1 pixel avec une couleur grise (#ccc) *!*/
+    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); !* Ajoute une ombre avec un flou de 10 pixels et une opacité de 0.2 *!*/
+    max-width: 100vw;
+    width: 100%;
+    background: transparent;
 }
 
 .footer_social_link_container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 20%;
 }
 
 /*welcome block */
 
 .welcome_block {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    display: flex;
+    height: 140vh;
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
+    margin: 0px;
+    /*background-image: url("https://etourisme.blog/wp-content/uploads/2023/01/agence-trekking-everest-camp-base.jpg");*/
+    /*background: url("https://etourisme.blog/wp-content/uploads/2023/01/agence-trekking-everest-camp-base.jpg") no-repeat center center fixed;*/
+    background-image: url("http://localhost:10004/wp-content/uploads/2023/06/agence-trekking-everest-camp-base.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .welcome_block_1 {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    justify-content: center;
+    height: 50%;
+    position: relative;
+    width: 100%;
+}
+
+
+/*Changer les valeurs de top et left pour repositionner le contenu du welcome*/
+.welcome_block1_content {
+    /*position: absolute;*/
+    /*top: 25rem;*/
+    /*left: 10rem;*/
+    max-width: 100%;
+    margin-left: 5vw;
+}
+
+@media (min-width: 992px) {
+    .welcome_block1_content {
+        margin-left: 10vw;
+        padding: 1rem;
+    }
+}
+
+.weclome_block_2 {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.welcome_block_2_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    /*position: absolute;*/
+    /*bottom: 10rem;*/
 }
 
 .welcome_block_btn {
     display: flex;
     flex-direction: row;
+    margin-bottom: 2rem;
 }
 
 .welcome_btn {
@@ -92,34 +178,70 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+    padding: 2rem 1rem;
+    background-color: transparent;
+    width: 100%;
+}
+
+.txt_news_section {
+    padding: 0 2rem;
 }
 
 .front_page_news_card_container {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .front_page_news_card {
     display: flex;
     flex-direction: column;
-    background-color: lightblue;
+    align-items: center;
+    background-color: transparent;
     padding: 1rem;
-    border: solid 1px whitesmoke;
-    margin: 2rem;
-    width: 25%; /* Chaque élément occupe 33.33% de la largeur de la ligne */
+    flex: 1;
+    min-width: 20rem;
     box-sizing: border-box;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.front_page_news_card_content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.front_page_news_image {
+    /*width: 100%;*/
+    /*height: auto*/
+    float: left;
+    width: 18rem;
+    height: 18rem;
+    object-fit: cover;
 }
 
 /*page content block*/
 
 .front_page_content_container {
     display: flex;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin: 0px;
+}
+
+.front_page_content_background {
+    background-image: url("http://localhost:10004/wp-content/uploads/2023/06/BlackForest-Germany-GettyImages-147180370-scaled.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
 }
 
 .front_page_content_block_1 {
@@ -127,6 +249,28 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0px;
+}
+
+.front_page_content_block_2 {
+    display: flex;
+    justify-content: center;
+    padding: 0px;
+}
+
+.front_page_content_img {
+    float: left;
+    width: 20rem;
+    height: 20rem;
+    object-fit: cover;
+    border: #d2b48c 5px solid;
+}
+
+@media (min-width: 992px) {
+    .front_page_content_img {
+        width: 30rem;
+        height: 30rem;
+    }
 }
 
 /*page temoignage block*/
@@ -134,9 +278,9 @@
 .front_page_temoignage_container {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    width: 80vw;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: transparent;
 }
 
 .front_page_temoignage_title {
@@ -147,8 +291,15 @@
 
 .front_page_temoignage_card_container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+}
+
+@media (min-width: 992px) {
+    .front_page_temoignage_card_container {
+        flex-direction: row;
+    }
 }
 
 
@@ -157,21 +308,49 @@
     flex-direction: column;
     background-color: lightblue;
     padding: 1rem;
-    border: solid 1px whitesmoke;
     margin: 2rem;
-    width: 25%; /* Chaque élément occupe 33.33% de la largeur de la ligne */
+    width: 90%; /* Chaque élément occupe 33.33% de la largeur de la ligne */
     box-sizing: border-box;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 /*contact block*/
 
 .contact_container {
     display: flex;
-    flex-direction: row;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    width: 90%;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: lightblue;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .contact_container {
+        flex-direction: row;
+        margin-bottom: 0rem;
+    }
+}
+
+.contact_block_1 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    /*margin-bottom: 2rem;*/
+}
+
+.contact_block_2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 /*main title block*/
@@ -198,16 +377,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
+
 }
 
 .galerie_bloc2 {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
 }
 
 .galerie5_img_bloc1 {

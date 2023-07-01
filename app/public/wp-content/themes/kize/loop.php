@@ -10,7 +10,7 @@ if(have_posts()) : ?>
 
             <?php if(!is_singular()) : ?>
             <p>
-                <img src="<?php the_post_thumbnail_url(); ?>" alt="osef" style="width: 100%; height: auto">
+                <img class="front_page_news_image" src="<?php the_post_thumbnail_url(); ?>" alt="osef">
             </p>
                 <p><a href="<?php the_permalink(); ?>" class="btn btn-primary">Lire la suite</a></p>
             <?php endif; ?>

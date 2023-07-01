@@ -6,26 +6,6 @@ add_theme_support('title-tag');
 //déclaration css/js et bootstrap
 function kize_register_assets(): void
 {
-
-    wp_register_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css');
-
-    wp_register_script('bootstrap', 'https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-
-    q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', ['pooper', 'jquery'], 1.0, true);
-    wp_register_script('pooper', 'https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" 
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', [], 1.0, true);
-    // Déclarer jQuery
-    wp_deregister_script('jquery'); // On annule l'inscription du jQuery de WP
-    wp_enqueue_script( // On déclare une version plus moderne
-        'jquery',
-        'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
-        false,
-        '3.3.1',
-        true
-    );
-
-    wp_enqueue_style('bootstrap');
-    wp_enqueue_script('bootstrap');
-
     // Déclarer le JS
     wp_enqueue_script(
         'kize',
@@ -35,7 +15,10 @@ function kize_register_assets(): void
         true
     );
 
-//     Déclarer le fichier CSS à un autre emplacement
+    wp_enqueue_style( 'bootstrap', '//stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' );
+    wp_enqueue_style( 'my-style', get_template_directory_uri() . '/style.css');
+
+    //     Déclarer le fichier CSS à un autre emplacement
     wp_enqueue_style(
         'kize',
         get_template_directory_uri() . '/ressources/css/main.css',
@@ -50,10 +33,14 @@ function kize_register_assets(): void
         array(),
         '1.0'
     );
-
 }
 
 add_action('wp_enqueue_scripts', 'kize_register_assets');
+
+//function wpbootstrap_enqueue_styles() {
+//
+//}
+//add_action('wp_enqueue_scripts', 'wpbootstrap_enqueue_styles');
 
 // Déclaration header et footer pour pop dans le BO
 function wpbootstrap_after_setup_theme()
@@ -114,9 +101,6 @@ function get_id_by_slug($page_slug): ?int
     }
 }
 
-//test part
-
-
 function kize_register_post_types()
 {
 // CPT services ( Il y a de nombreux autres paramètre possible !)
@@ -144,3 +128,93 @@ function kize_register_post_types()
 }
 
 add_action('init', 'kize_register_post_types');
+
+//test part
+
+require_once 'widgets/cnalps-weather/CNAlpsWeather.php';
+function kize_theme_register_sidebars()
+{
+    register_widget(CNAlpsWeather::class);
+    register_sidebar(array(
+        'id' => 'homepage',
+        'name' => 'Side bar Accueil',
+        'description' => 'Side bar accueil',
+        'before_widget' => '<div id="%1$s" class="p-4 weather_widget %2$s">',
+        'after_widget' => '</div>',
+        'before_city' => '<h3 class="widget-city">',
+        'after_city' => '</h3>',
+        'before_country' => '<h4 class="widget-country">',
+        'after_country' => '</h4>'
+    ));
+    register_sidebar(array(
+        'id' => 'footer_widget_slot',
+        'name' => 'widget du footer',
+        'description' => 'widget footer',
+        'before_widget' => '<div id="%1$s" class="p-4 weather_widget %2$s">',
+        'after_widget' => '</div>',
+        'before_city' => '<h3 class="widget-city">',
+        'after_city' => '</h3>',
+        'before_country' => '<h4 class="widget-country">',
+        'after_country' => '</h4>'
+    ));
+}
+
+add_action('widgets_init', 'kize_theme_register_sidebars');
+
+// api part
+function my_awesome_func()
+{
+
+    $statistics = array();
+
+    // Nombre total d'articles
+    $statistics['totalPosts'] = wp_count_posts()->publish;
+
+    // Nombre total d'utilisateurs enregistrés
+    $statistics['totalUsers'] = count_users()['total_users'];
+
+    // Détails du post le plus récent
+    $args = array(
+        'posts_per_page' => 1,
+        'orderby' => 'date',
+        'order' => 'DESC'
+    );
+    $recent_posts = get_posts($args);
+
+    if (!empty($recent_posts)) {
+        $recent_post = $recent_posts[0];
+        $statistics['mostRecentPost'] = array(
+            'id' => $recent_post->ID,
+            'title' => $recent_post->post_title,
+            'views' => get_post_meta($recent_post->ID, 'views', true),
+            'likes' => get_post_meta($recent_post->ID, 'likes', true)
+        );
+    }
+
+    // Liste des articles récents
+    $args = array(
+        'posts_per_page' => 5,
+        'orderby' => 'date',
+        'order' => 'DESC'
+    );
+    $recent_posts = get_posts($args);
+
+    $statistics['recentPosts'] = array();
+    foreach ($recent_posts as $post) {
+        $statistics['recentPosts'][] = array(
+            'id' => $post->ID,
+            'title' => $post->post_title,
+            'date' => $post->post_date
+        );
+    }
+
+    return $statistics;
+}
+
+add_action('rest_api_init', function () {
+    register_rest_route('kize/v1', 'test', array(
+        'methods' => 'GET',
+        'callback' => 'my_awesome_func',
+    ));
+});
+

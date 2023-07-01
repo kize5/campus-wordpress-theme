@@ -16,42 +16,44 @@
 <!--        <h2>--><?php //the_field('titre_news_section'); ?><!--</h2>-->
 <!--        <p>--><?php //the_field('texte_news_section'); ?><!--</p>-->
 
-
-<?php $counter = 1; ?>
-<?php
-$args = array(
-    'post_type' => 'services',
-    'posts_per_page' => 2
-);
-$query = new WP_Query($args);
-
-if ($query->have_posts()) {
-while ($query->have_posts()) {
-$query->the_post();
-?>
-<div class="front_page_content_container <?php echo $counter % 2 === 0 ? '' : 'row flex-row-reverse' ?> ">
-    <div class="col-md-6 front_page_content_block_1">
-        <h2><?php the_title(); ?></h2>
-        <p>
-        </p>
-        <p><?php the_excerpt(); ?></p>
-        <a href="<?php the_permalink(); ?>">
-            <p><a href="<?php the_permalink(); ?>" class="btn btn-primary">Lire la suite</a></p>
-        </a>
-    </div>
-    <div class="col-md-6 front_page_content_block_2">
-        <a href="<?php the_permalink(); ?>">
-            <img src="<?php the_post_thumbnail_url(); ?>" alt="osef" style="width: 100%; height: auto">
-        </a>
-    </div>
+<div class="front_page_content_background">
+    <?php $counter = 1; ?>
     <?php
-    $counter++;
-    }
-    wp_reset_postdata();
-    } else {
-        echo 'Aucun article trouvé.';
-    }
-    ?>
+    $args = array(
+        'post_type' => 'services',
+        'posts_per_page' => 2
+    );
+    $query = new WP_Query($args);
 
+    if ($query->have_posts()) {
+    while ($query->have_posts()) {
+    $query->the_post();
+    ?>
+    <div class="front_page_content_container <?php echo $counter % 2 === 0 ? '' : 'row flex-row-reverse' ?> ">
+        <div class="col-md-6 front_page_content_block_1">
+            <h2><?php the_title(); ?></h2>
+            <p>
+            </p>
+            <p><?php the_excerpt(); ?></p>
+            <a href="<?php the_permalink(); ?>">
+                <p><a href="<?php the_permalink(); ?>" class="btn btn-primary">Lire la suite</a></p>
+            </a>
+        </div>
+        <div class="col-md-6 front_page_content_block_2">
+            <a href="<?php the_permalink(); ?>">
+                <img class="front_page_content_img" src="<?php the_post_thumbnail_url(); ?>" alt="osef">
+            </a>
+        </div>
+        <?php
+        $counter++;
+        }
+        wp_reset_postdata();
+        } else {
+            echo 'Aucun article trouvé.';
+        }
+        ?>
+
+    </div>
 </div>
 </div>
+
